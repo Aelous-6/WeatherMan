@@ -9,11 +9,14 @@
         android:id="@+id/china"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="你啊哈哦" />
+        android:textColor="@drawable/tab_selector"
+        android:textSize="@dimen/above_title" />
 
     <TextView
         android:id="@+id/english"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nihao" />
+        android:layout_marginTop="@dimen/etitle_marginTop"
+        android:textColor="@drawable/tab_selector"
+        android:textSize="@dimen/below_title" />
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.hufu.weatherman;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -27,28 +28,19 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hufu.weatherman.fragment.ForecastFragment;
+import com.hufu.weatherman.fragment.LifeFragment;
+import com.hufu.weatherman.fragment.LiveFragment;
+import com.hufu.weatherman.fragment.MeFragment;
 import com.hufu.weatherman.manager.SystemBarTintManager;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
     private SystemBarTintManager tintManager;
     private TabLayout mtabLayout;
@@ -59,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initWindows();
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -67,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mtabLayout = (TabLayout) findViewById(R.id.tabs);
+        mtabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
+
         mViewPager.setAdapter(mSectionsPagerAdapter);
         initView();
     }
@@ -88,23 +81,24 @@ public class MainActivity extends AppCompatActivity {
 //        mtabLayout.addTab(mtabLayout.newTab().setText(titles.get(1)));
 //        mtabLayout.addTab(mtabLayout.newTab().setText(titles.get(2)));
 
-      //  mtabLayout.setTabsFromPagerAdapter();
+        //  mtabLayout.setTabsFromPagerAdapter();
         mtabLayout.setupWithViewPager(mViewPager);
 
-        for(int i=0; i<mtabLayout.getTabCount();i++){
+        for (int i = 0; i < mtabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = mtabLayout.getTabAt(i);
-            if(tab != null){
+            if (tab != null) {
                 tab.setCustomView(mSectionsPagerAdapter.getTabView(i));
             }
         }
-
-       mViewPager.setCurrentItem(0);
+        //当直接使用下面的第二句语句时，当界面被打开时并没有选择第0项, 但是改变参数为非0的就行，不明白？
+        //用了下面很笨的方法，先设为其他位置，然后在设置一次，能解决这个问题。
+        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(0);
     }
 
 
     @TargetApi(19)
     private void initWindows() {
-
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
@@ -120,48 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            int position = getArguments().getInt(ARG_SECTION_NUMBER);
-            if (position == 1 || position == 3) {
-                rootView.setBackgroundResource(R.drawable.main_bg_9);
-            }
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, position));
-            return rootView;
-        }
-
-
-    }
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -174,10 +126,27 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            /**
+             * 根据位置不同的fragment
+             */
+            Fragment fragment = null;
+            switch (position){
+                case 0:
+                    fragment = new ForecastFragment();
+                    break;
+                case 1:
+                    fragment = new LifeFragment();
+                    break;
+                case 2:
+                    fragment = new LiveFragment();
+                    break;
+                case 3:
+                    fragment = new MeFragment();
+                    break;
+            }
+            return fragment;
         }
+
         public View getTabView(int position) {
             View v = LayoutInflater.from(MainActivity.this).inflate(R.layout.tablayout_title, null);
             TextView tv = (TextView) v.findViewById(R.id.china);
