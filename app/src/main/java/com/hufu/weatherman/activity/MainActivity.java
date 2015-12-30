@@ -1,40 +1,29 @@
-package com.hufu.weatherman;
+package com.hufu.weatherman.activity;
 
 import android.annotation.TargetApi;
-import android.app.ActivityManager;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hufu.weatherman.R;
 import com.hufu.weatherman.fragment.ForecastFragment;
 import com.hufu.weatherman.fragment.LifeFragment;
 import com.hufu.weatherman.fragment.LiveFragment;
 import com.hufu.weatherman.fragment.MeFragment;
 import com.hufu.weatherman.manager.SystemBarTintManager;
+import com.hufu.weatherman.utils.WindowUtil;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initWindows();
+        WindowUtil.hideStatusBar(this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -96,23 +85,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setCurrentItem(0);
     }
 
-
-    @TargetApi(19)
-    private void initWindows() {
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-        WindowManager.LayoutParams attrs = getWindow().getAttributes();
-        attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        getWindow().setAttributes(attrs);
-
-//            tintManager = new SystemBarTintManager(this);
-//            tintManager.setStatusBarTintColor(getResources().getColor(R.color.colorPrimary));
-//            tintManager.setStatusBarTintEnabled(true);
-
-    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
