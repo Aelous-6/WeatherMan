@@ -3,6 +3,8 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#40FF81</color>
+    <color name="shimmer_textView_color">#5FD8FF</color>
+    <color name="shimmer_textView_color_normal">#FFFFFF</color>
 
 
 </resources>

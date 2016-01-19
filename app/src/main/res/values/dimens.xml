@@ -7,6 +7,8 @@
     <dimen name="above_title">16dp</dimen>
     <dimen name="below_title">12dp</dimen>
     <dimen name="tab_height">60dp</dimen>
-    <dimen name="tab_marginBottom">2dp</dimen>
+    <dimen name="tab_marginBottom">2dp</dimen>ß
     <dimen name="etitle_marginTop">4dp</dimen>
+    <dimen name="shimmer_text_size">20sp</dimen>
+    <dimen name="start_button_marginEnd">26dp</dimen>
 </resources>

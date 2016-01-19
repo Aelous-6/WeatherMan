@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.hufu.weatherman.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * the three  Fragment for spalsh
  */
 public class AnimSplashFragment extends BaseFragment {
 

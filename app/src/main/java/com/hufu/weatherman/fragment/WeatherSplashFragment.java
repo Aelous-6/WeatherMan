@@ -2,15 +2,14 @@ package com.hufu.weatherman.fragment;
 
 
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.hufu.weatherman.R;
+import com.hufu.weatherman.view.shimmer.Shimmer;
+import com.hufu.weatherman.view.shimmer.ShimmerTextView;
 
 import java.io.IOException;
 
@@ -22,6 +21,8 @@ public class WeatherSplashFragment extends BaseFragment {
     private GifImageView gif;
     private GifImageView gifImageView;
     private GifDrawable gifFromAssets;
+    private ShimmerTextView shimmerTextView;
+    private Shimmer shimmer;
 
     public WeatherSplashFragment() {
         // Required empty public constructor
@@ -34,6 +35,7 @@ public class WeatherSplashFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weather_splash, container, false);
         gifImageView = (GifImageView) view.findViewById(R.id.circle_gif);
+        shimmerTextView = (ShimmerTextView) view.findViewById(R.id.shimmer_tv);
         try {
 
             gifFromAssets = new GifDrawable(getActivity().getAssets(), "animated-weather-image-0012.gif");
@@ -43,6 +45,8 @@ public class WeatherSplashFragment extends BaseFragment {
             //GIF 资源打开失败，显示默认失败图片
 
         }
+        shimmer = new Shimmer();
+
         return view;
     }
 
@@ -53,18 +57,25 @@ public class WeatherSplashFragment extends BaseFragment {
             Log.i(TAG, "onResume");
             gifFromAssets.start();
         }
+        if (shimmer != null) {
+            shimmer.start(shimmerTextView);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.i(TAG, "onPause");
-        gifFromAssets.stop();
+        if (gifFromAssets != null)
+            gifFromAssets.stop();
+        if (shimmer != null)
+            shimmer.cancel();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        //在此处曾经出现过一次异常
         if (!gifFromAssets.isRunning()) {
             Log.i(TAG, "onStart");
             gifFromAssets.start();

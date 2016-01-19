@@ -1,19 +1,15 @@
 package com.hufu.weatherman.activity;
 
-import android.annotation.TargetApi;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.hufu.weatherman.R;
@@ -66,10 +62,6 @@ public class MainActivity extends AppCompatActivity {
         etitles.add("Live");
         etitles.add("Me");
 
-//        mtabLayout.addTab(mtabLayout.newTab().setText(titles.get(0)));
-//        mtabLayout.addTab(mtabLayout.newTab().setText(titles.get(1)));
-//        mtabLayout.addTab(mtabLayout.newTab().setText(titles.get(2)));
-
         //  mtabLayout.setTabsFromPagerAdapter();
         mtabLayout.setupWithViewPager(mViewPager);
 
@@ -102,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
              * 根据位置不同的fragment
              */
             Fragment fragment = null;
-            switch (position){
+            switch (position) {
                 case 0:
                     fragment = new ForecastFragment();
                     break;
@@ -130,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return 4;
         }
 
