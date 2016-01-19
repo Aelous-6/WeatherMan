@@ -1,7 +1,6 @@
 package com.hufu.weatherman.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.WindowManager;
 
 /**

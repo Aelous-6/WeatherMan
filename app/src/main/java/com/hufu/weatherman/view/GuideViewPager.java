@@ -11,16 +11,24 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 
 import com.hufu.weatherman.R;
+
+import java.lang.reflect.Field;
 
 /**
  * TODO: document your custom view class.
  */
 public class GuideViewPager extends ViewPager {
+    private static final String TAG = GuideViewPager.class.getSimpleName();
+
     private Bitmap background;
     private Paint paint = new Paint(1);
+    private int duration = 1000;
 
     public GuideViewPager(Context context) {
         super(context);
@@ -46,6 +54,15 @@ public class GuideViewPager extends ViewPager {
         super.dispatchDraw(canvas);
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        try {
+            return super.onInterceptTouchEvent(ev);
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, "onInterceptTouchEvent in IllegalArgumentException");
+            return false;
+        }
+    }
     public void setBackground(Bitmap background) {
         this.background = background;
         this.paint.setFilterBitmap(true);

@@ -2,15 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.hufu.weatherman.fragment.WeatherSplashFragment">
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/gif"
-
-        android:src="@drawable/gfan"
-        />
+        android:id="@+id/circle_gif"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        android:alpha="0.4" />
 
 </RelativeLayout>

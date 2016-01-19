@@ -23,6 +23,7 @@ public class AnimSplashFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //TODO 界面设计和功能实现
         return inflater.inflate(R.layout.fragment_anim_splash, container, false);
     }
 

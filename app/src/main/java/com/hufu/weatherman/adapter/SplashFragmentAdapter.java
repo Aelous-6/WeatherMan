@@ -32,5 +32,4 @@ public class SplashFragmentAdapter extends FragmentStatePagerAdapter {
         return list.size();
     }
 
-
 }
