@@ -16,9 +16,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16dp"
             android:src="@drawable/launcher_immediate_experience"
-            android:visibility="invisible"
-            android:layout_marginEnd="@dimen/start_button_marginEnd"
-            android:layout_centerHorizontal="true" />
+
+            android:visibility="invisible" />
+
 
     </RelativeLayout>
 

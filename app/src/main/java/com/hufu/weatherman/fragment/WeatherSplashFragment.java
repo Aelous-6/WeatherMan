@@ -36,17 +36,15 @@ public class WeatherSplashFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_weather_splash, container, false);
         gifImageView = (GifImageView) view.findViewById(R.id.circle_gif);
         shimmerTextView = (ShimmerTextView) view.findViewById(R.id.shimmer_tv);
-        try {
 
+        try {
             gifFromAssets = new GifDrawable(getActivity().getAssets(), "animated-weather-image-0012.gif");
             gifImageView.setImageDrawable(gifFromAssets);
         } catch (IOException e) {
             e.printStackTrace();
             //GIF 资源打开失败，显示默认失败图片
-
         }
         shimmer = new Shimmer();
-
         return view;
     }
 
@@ -57,9 +55,11 @@ public class WeatherSplashFragment extends BaseFragment {
             Log.i(TAG, "onResume");
             gifFromAssets.start();
         }
+
         if (shimmer != null) {
             shimmer.start(shimmerTextView);
         }
+
     }
 
     @Override

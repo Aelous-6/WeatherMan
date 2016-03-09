@@ -12,6 +12,7 @@
         android:layout_centerInParent="true"
         android:alpha="0.4" />
 
+
     <com.hufu.weatherman.view.shimmer.ShimmerTextView
         android:id="@+id/shimmer_tv"
         android:layout_width="wrap_content"
@@ -24,5 +25,6 @@
         android:layout_above="@id/circle_gif"
         android:layout_centerHorizontal="true"
         app:reflectionColor="@color/shimmer_textView_color" />
+
 
 </RelativeLayout>
