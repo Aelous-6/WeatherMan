@@ -5,7 +5,8 @@
     <color name="colorAccent">#40FF81</color>
 
     <color name="shimmer_textView_color">#5FD8FF</color>
-    <color name="shimmer_textView_color_normal">#FFFFFF</color>
+    <color name="shimmer_textView_color_normal">#FF113D</color>
+    <color name="circleIndicator_selected">#5C7AFF</color>
 
 
 </resources>

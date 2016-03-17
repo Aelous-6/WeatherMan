@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.hufu.weatherman.fragment.WeatherSplashFragment">
 
     <pl.droidsonroids.gif.GifImageView
@@ -13,8 +12,21 @@
         android:alpha="0.4" />
 
 
-    <com.hufu.weatherman.view.shimmer.ShimmerTextView
-        android:id="@+id/shimmer_tv"
+    <!--<com.hufu.weatherman.view.shimmer.ShimmerTextView-->
+    <!--android:id="@+id/shimmer_tv"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/shimmer_text"-->
+    <!--android:lines="1"-->
+    <!--android:textColor="@color/shimmer_textView_color_normal"-->
+    <!--android:textSize="@dimen/shimmer_text_size"-->
+    <!--android:visibility="visible"-->
+    <!--android:layout_above="@id/circle_gif"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--app:reflectionColor="@color/shimmer_textView_color" />-->
+
+    <TextSwitcher
+        android:id="@+id/text_switcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/shimmer_text"
@@ -23,8 +35,7 @@
         android:textSize="@dimen/shimmer_text_size"
         android:visibility="visible"
         android:layout_above="@id/circle_gif"
-        android:layout_centerHorizontal="true"
-        app:reflectionColor="@color/shimmer_textView_color" />
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
